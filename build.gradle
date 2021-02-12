@@ -48,9 +48,9 @@ repositories {
 		url = "modmaven.k-4u.nl"
 	}
 	maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
+		name = "CurseForge"
+		url "https://www.cursemaven.com"
+	}
 	//ivy { name "com.latmod.mods"; artifactPattern "http://mods.latmod.com/[module]/[revision]/[module]-[revision](-[classifier]).[ext]" }
 	maven { 
 		name="Latmods"
@@ -85,14 +85,13 @@ dependencies {
 
 	//compile 'elucent:albedo:2.0-SNAPSHOT'
 	//deobfCompile 'albedo:albedo:0.1.3:deobf'
-	compile 'albedo:albedo:1.12.2:1.1.0'
-	
-	compile 'crafttweaker:CraftTweaker2:1.12:4.1.13'
+	compile 'curse.maven:albedo-275300:2714505'
+	compile 'curse.maven:crafttweaker-239197:2639477'
+	compile 'curse.maven:the-lost-cities-269024:2623319'
 	
 	//provided 'chisel:Chisel-MC1.12:0.0.14.18:api'
 	//provided 'chisel:Chisel:MC1.12:0.0.14.18'
-	
-	compile 'the-lost-cities:lostcities:1.12:2.0.12'
+
 	
 	//compile 'com.latmod.mods:FTBLib:4.2.5:api'
 	deobfCompile "com.feed_the_beast.mods:FTBLib:5.4.0.64"
