@@ -339,14 +339,18 @@ public class TGEventHandler {
 		}
 		
 	}
-	
-	@SubscribeEvent(priority=EventPriority.HIGH, receiveCanceled=false)
-	public static void OnLivingAttack(LivingAttackEvent event){
+
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public static void onEntityAttacked(LivingAttackEvent event) {
+		if (event.isCanceled() || event.getAmount() <= 0 || event.getEntityLiving().world.isRemote) {
+			return;
+		}
+
 		if (event.getSource() instanceof TGDamageSource) {
 			event.setCanceled(true);
 			try {
 				DamageSystem.attackEntityFrom(event.getEntityLiving(), event.getSource(), event.getAmount());
-				
+
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -356,7 +360,7 @@ public class TGEventHandler {
 			}
 		} else if ( (event.getSource() == DamageSource.LAVA || event.getSource()==DamageSource.ON_FIRE || event.getSource()==DamageSource.IN_FIRE) && event.getEntityLiving() instanceof EntityPlayer) {
 			float bonus = GenericArmor.getArmorBonusForPlayer((EntityPlayer) event.getEntityLiving(), TGArmorBonus.COOLING_SYSTEM,event.getEntityLiving().world.getTotalWorldTime()%5==0);
-			
+
 			if (bonus >=1.0f) {
 				event.setCanceled(true);
 			}
